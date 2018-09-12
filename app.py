@@ -55,19 +55,19 @@ class DCCollector(object):
 #            yield metric_family
 
 
-            if dc.spec.strategy.type == 'Rolling':
-                max_unavailable = dc.spec.strategy.rolling_params.max_unavailable
-                # if rolling_params.max_unavailable is specified as percent, compute nr of pods
-                if max_unavailable.find('%') != -1:
-                    max_unavailable = math.ceil(dc_status.status.replicas * int(max_unavailable[:-1]) / 100)
+#             if dc.spec.strategy.type == 'Rolling':
+#                 max_unavailable = dc.spec.strategy.rolling_params.max_unavailable
+#                 # if rolling_params.max_unavailable is specified as percent, compute nr of pods
+#                 if max_unavailable.find('%') != -1:
+#                     max_unavailable = math.ceil(dc_status.status.replicas * int(max_unavailable[:-1]) / 100)
 
-                metric_family = GaugeMetricFamily(
-                    EXPORTER_NAMESPACE + 'deployment_spec_strategy_rollingupdate_max_unavailable',
-                    '',
-                    labels=default_metric_labels
-                )
-                metric_family.add_metric([dc.metadata.namespace, dc.metadata.name], max_unavailable)
-                yield metric_family
+#                 metric_family = GaugeMetricFamily(
+#                     EXPORTER_NAMESPACE + 'deployment_spec_strategy_rollingupdate_max_unavailable',
+#                     '',
+#                     labels=default_metric_labels
+#                 )
+#                 metric_family.add_metric([dc.metadata.namespace, dc.metadata.name], max_unavailable)
+#                 yield metric_family
 
 
 if __name__ == "__main__":
@@ -81,4 +81,4 @@ if __name__ == "__main__":
     start_http_server(EXPORTER_PORT)
     print('Listening on port {}'.format(EXPORTER_PORT))
     REGISTRY.register(DCCollector())
-    while True: time.sleep(5)
+    while True: time.sleep(30)
