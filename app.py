@@ -16,7 +16,7 @@ EXPORTER_PORT = 8080
 
 class DCCollector(object):
     def collect(self):
-        for dc in oapi.list_deployment_config_for_all_namespaces(async_req=True).items:
+        for dc in oapi.list_deployment_config_for_all_namespaces(async_req).items:
             dc_status = oapi.read_namespaced_deployment_config_status(dc.metadata.name, dc.metadata.namespace)
 
             dc_metrics = {
