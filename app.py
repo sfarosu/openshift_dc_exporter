@@ -9,6 +9,7 @@ from collections import OrderedDict
 import os
 import time
 import math
+import pprint
 
 EXPORTER_NAMESPACE = 'kube_'
 EXPORTER_PORT = 8080
