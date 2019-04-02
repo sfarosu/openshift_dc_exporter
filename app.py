@@ -82,4 +82,4 @@ if __name__ == "__main__":
     start_http_server(EXPORTER_PORT)
     print('Listening on port {}'.format(EXPORTER_PORT))
     REGISTRY.register(DCCollector())
-    while True: time.sleep(1)
+    while True: time.sleep(60)
